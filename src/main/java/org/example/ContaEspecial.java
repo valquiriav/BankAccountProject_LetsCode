@@ -1,14 +1,20 @@
 package org.example;
 
+import java.util.Scanner;
+
 public class ContaEspecial extends Conta{
 
-    public ContaEspecial(Usuario usuario) {
-        super(usuario);
+    public ContaEspecial(Long cpf) {
+        super(cpf);
         this.setSaldo(400);
         this.setLimite(200);
     }
 
-    public void realizarSaque(double saque) {
+    public void realizarSaque() {
+        System.out.println("Que valor você gostaria de sacar?");
+        Scanner scanner = new Scanner(System.in);
+        double saque = scanner.nextDouble();
+
         if (this.getSaldo() >= saque){
             this.setSaldo(this.getSaldo() - saque);
             System.out.println("Saque realizado com sucesso. Saldo atual: " + this.getSaldo());
@@ -26,7 +32,11 @@ public class ContaEspecial extends Conta{
         }
     }
 
-    public void fazerDeposito(double deposito){
+    public void fazerDeposito(){
+        System.out.println("Que valor você gostaria de depositar?");
+        Scanner scanner = new Scanner(System.in);
+        double deposito = scanner.nextDouble();
+
         if (this.getLimite() < 200 && deposito + this.getLimite() <= 200){
             this.setLimite(this.getLimite() + deposito);
 

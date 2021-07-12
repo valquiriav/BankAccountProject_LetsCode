@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 public class Conta {
 
-    private Usuario usuario;
+    private Long cpf;
     private double saldo;
     private double limite;
 
-    public Conta(Usuario usuario) {
-        this.usuario = usuario;
+    public Conta(Long cpf) {
+        this.cpf = cpf;
         this.saldo = 0;
     }
 
@@ -25,26 +25,30 @@ public class Conta {
 
     }
 
-    public void fazerDeposito(double deposito){
+    public void fazerDeposito(){
+        System.out.println("Que valor você gostaria de depositar?");
+        Scanner scanner = new Scanner(System.in);
+        double deposito = scanner.nextDouble();
+
         this.setSaldo(this.getSaldo() + deposito);
         System.out.println("Depósito realizado com sucesso. Saldo atual: " + this.getSaldo());
     }
 
-    public double visualizarSaldo() {
-        return getSaldo();
+    public void visualizarSaldo() {
+        System.out.println("O seu saldo atual é de " + this.getSaldo());
     }
 
-    public void realizarSaque(double saque) {
+    public void realizarSaque() {
+        System.out.println("Que valor você gostaria de sacar?");
+        Scanner scanner = new Scanner(System.in);
+        double saque = scanner.nextDouble();
+
         if (this.getSaldo() >= saque){
             this.setSaldo(this.getSaldo() - saque);
             System.out.println("Saque realizado com sucesso. Saldo atual: " + this.getSaldo());
         } else {
             System.err.println("Saldo insuficiente.");
         }
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
     }
 
     public double getSaldo() {
@@ -55,15 +59,19 @@ public class Conta {
         this.saldo = saldo;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
     public double getLimite() {
         return limite;
     }
 
     public void setLimite(double limite) {
         this.limite = limite;
+    }
+
+    public Long getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(Long cpf) {
+        this.cpf = cpf;
     }
 }

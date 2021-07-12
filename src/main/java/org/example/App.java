@@ -62,7 +62,9 @@ public class App {
         System.out.println("Seus dados são: ");
         System.out.println("Nome: " + nome);
         System.out.println("CPF: " + cpf);
-        System.out.println("Código de autenticação: " + codigo + " (Não o perca! Ele será sua chave para acessar a conta.");
+        System.out.println("Código de autenticação: " + codigo + " (Não o perca! Ele será sua chave para acessar a conta.)");
+
+        autenticarUsuario();
 
     }
 

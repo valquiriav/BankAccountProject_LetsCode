@@ -4,8 +4,7 @@ import java.util.Scanner;
 
 public class ContaEspecial extends Conta{
 
-    public ContaEspecial(Long cpf) {
-        super(cpf);
+    public ContaEspecial() {
         this.setSaldo(400);
         this.setLimite(200);
     }

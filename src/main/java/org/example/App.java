@@ -5,7 +5,10 @@ import java.util.Scanner;
 public class App {
 
     public static void main( String[] args ) {
+        executar();
+    }
 
+    public static void executar() {
         System.out.println("Seja bem vindo! Escolha uma opção:");
         System.out.println("1 - Autenticar usuário");
         System.out.println("2 - Criar usuário");
@@ -36,9 +39,6 @@ public class App {
                 break;
             }
         }
-
-        System.err.println("Código não existente.");
-
     }
 
 

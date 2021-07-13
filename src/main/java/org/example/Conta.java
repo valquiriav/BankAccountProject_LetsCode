@@ -4,12 +4,10 @@ import java.util.Scanner;
 
 public class Conta {
 
-    private Long cpf;
     private double saldo;
     private double limite;
 
-    public Conta(Long cpf) {
-        this.cpf = cpf;
+    public Conta() {
         this.saldo = 0;
     }
 
@@ -67,11 +65,4 @@ public class Conta {
         this.limite = limite;
     }
 
-    public Long getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(Long cpf) {
-        this.cpf = cpf;
-    }
 }

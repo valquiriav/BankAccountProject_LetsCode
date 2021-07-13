@@ -4,8 +4,7 @@ import java.util.Scanner;
 
 public class ContaPoupanca extends Conta{
 
-    public ContaPoupanca(Long cpf) {
-        super(cpf);
+    public ContaPoupanca() {
         this.setSaldo(100);
     }
 

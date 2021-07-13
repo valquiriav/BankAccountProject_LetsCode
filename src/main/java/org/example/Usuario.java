@@ -83,8 +83,7 @@ public class Usuario {
         switch (conta) {
             case 1:
                 if (contaPrincipal == null) {
-                    Conta c = new Conta();
-                    this.contaPrincipal = c;
+                    this.contaPrincipal = new Conta();
                     System.out.println("Conta criada com sucesso!");
                 } else {
                     System.err.println("Você já possui uma Conta Principal.");
@@ -92,8 +91,7 @@ public class Usuario {
                 break;
             case 2:
                 if (contaEspecial == null) {
-                    ContaEspecial c = new ContaEspecial();
-                    this.contaEspecial = c;
+                    this.contaEspecial = new ContaEspecial();
                     System.out.println("Conta criada com sucesso!");
                 } else {
                     System.err.println("Você já possui uma Conta Especial.");
@@ -101,8 +99,7 @@ public class Usuario {
                 break;
             case 3:
                 if (contaPoupanca == null) {
-                    ContaPoupanca c = new ContaPoupanca();
-                    this.contaPoupanca = c;
+                    this.contaPoupanca = new ContaPoupanca();
                     System.out.println("Conta criada com sucesso!");
                 } else {
                     System.err.println("Você já possui uma Conta Poupança.");

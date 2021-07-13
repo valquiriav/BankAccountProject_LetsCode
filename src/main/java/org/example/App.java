@@ -35,6 +35,8 @@ public class App {
 
         for (Usuario usuario : Cadastro.getUsuarios()){
             if (codigo == usuario.getCodigo()){
+
+                System.out.println("Boas vindas, " + usuario.getNome() + "!");
                 usuario.escolherAcao();
                 break;
             }

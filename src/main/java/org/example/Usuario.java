@@ -52,7 +52,6 @@ public class Usuario {
     }
 
     public void escolherAcao() {
-        System.out.println("Usuário autenticado com sucesso!");
         System.out.println("Escolha uma opção: ");
         System.out.println("1 - Movimentar Conta Existente");
         System.out.println("2 - Criar nova Conta");

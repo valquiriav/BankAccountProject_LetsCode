@@ -26,6 +26,7 @@ public class App {
             default:
                 System.err.println("Opção inválida.");
         }
+        executar();
     }
 
     public static void autenticarUsuario(){

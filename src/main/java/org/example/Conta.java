@@ -20,7 +20,6 @@ public class Conta {
 
         Scanner scanner = new Scanner(System.in);
         int opcao = scanner.nextInt();
-
     }
 
     public void fazerDeposito(){

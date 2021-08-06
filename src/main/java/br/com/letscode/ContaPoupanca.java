@@ -1,4 +1,6 @@
-package org.example;
+package br.com.letscode;
+
+import br.com.letscode.Exceptions.SaldoInsuficienteException;
 
 import java.util.Scanner;
 
@@ -8,7 +10,7 @@ public class ContaPoupanca extends Conta{
         this.setSaldo(100);
     }
 
-    public void realizarSaque() {
+    public void realizarSaque() throws SaldoInsuficienteException {
         System.out.println("Que valor você gostaria de sacar?");
         Scanner scanner = new Scanner(System.in);
         double saque = scanner.nextDouble();
@@ -17,7 +19,7 @@ public class ContaPoupanca extends Conta{
             this.setSaldo(this.getSaldo() - saque - this.getSaldo() * 0.0007);
             System.out.println("Saque realizado com sucesso. Saldo atual: " + this.getSaldo());
         } else {
-            System.err.println("Saldo insuficiente.");
+            throw new SaldoInsuficienteException();
         }
     }
 

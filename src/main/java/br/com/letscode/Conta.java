@@ -1,4 +1,7 @@
-package org.example;
+package br.com.letscode;
+
+import br.com.letscode.Exceptions.SaldoELimiteInsuficientesException;
+import br.com.letscode.Exceptions.SaldoInsuficienteException;
 
 import java.util.Scanner;
 
@@ -35,7 +38,7 @@ public class Conta {
         System.out.println("O seu saldo atual é de " + this.getSaldo());
     }
 
-    public void realizarSaque() {
+    public void realizarSaque() throws SaldoInsuficienteException, SaldoELimiteInsuficientesException {
         System.out.println("Que valor você gostaria de sacar?");
         Scanner scanner = new Scanner(System.in);
         double saque = scanner.nextDouble();

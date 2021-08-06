@@ -1,4 +1,9 @@
-package org.example;
+package br.com.letscode;
+
+import br.com.letscode.Exceptions.OpcaoInvalidaException;
+import br.com.letscode.Exceptions.PossuiContaException;
+import br.com.letscode.Exceptions.SaldoELimiteInsuficientesException;
+import br.com.letscode.Exceptions.SaldoInsuficienteException;
 
 import java.util.Scanner;
 
@@ -51,7 +56,7 @@ public class Usuario {
                 '}';
     }
 
-    public void escolherAcao() {
+    public void escolherAcao() throws PossuiContaException, OpcaoInvalidaException, SaldoInsuficienteException, SaldoELimiteInsuficientesException {
         System.out.println("Escolha uma opção: ");
         System.out.println("1 - Movimentar Conta Existente");
         System.out.println("2 - Criar nova Conta");
@@ -67,11 +72,12 @@ public class Usuario {
                 this.criarConta();
                 break;
             default:
-                System.out.println("Opção inválida.");
+                throw new OpcaoInvalidaException();
         }
     }
 
-    private void criarConta() {
+    private void criarConta() throws PossuiContaException, OpcaoInvalidaException, SaldoInsuficienteException, SaldoELimiteInsuficientesException {
+
         System.out.println("Escolha a conta que você gostaria de criar: ");
         System.out.println("1 - Conta Principal");
         System.out.println("2 - Conta Especial");
@@ -82,33 +88,24 @@ public class Usuario {
 
         switch (conta) {
             case 1:
-                if (contaPrincipal == null) {
-                    this.contaPrincipal = new Conta();
-                    System.out.println("Conta criada com sucesso!");
-                } else {
-                    System.err.println("Você já possui uma Conta Principal.");
-                }
+                Conta contaPrincipal = new Conta();
                 break;
             case 2:
-                if (contaEspecial == null) {
-                    this.contaEspecial = new ContaEspecial();
-                    System.out.println("Conta criada com sucesso!");
-                } else {
-                    System.err.println("Você já possui uma Conta Especial.");
-                }
+                Conta contaEspecial = new ContaEspecial();
                 break;
             case 3:
-                if (contaPoupanca == null) {
-                    this.contaPoupanca = new ContaPoupanca();
-                    System.out.println("Conta criada com sucesso!");
-                } else {
-                    System.err.println("Você já possui uma Conta Poupança.");
-                }
+                Conta contaPoupanca = new ContaPoupanca();
+                break;
+            default:throw new OpcaoInvalidaException();
         }
         this.escolherAcao();
     }
 
-    private void movimentarConta() {
+    public void movimentarConta() throws SaldoInsuficienteException, SaldoELimiteInsuficientesException, OpcaoInvalidaException {
+        realizarOperacao(escolherContaAMovimentar(), escolherOperacaoAFazer());
+    }
+
+    public Conta escolherContaAMovimentar() throws SaldoInsuficienteException, SaldoELimiteInsuficientesException, OpcaoInvalidaException {
         System.out.println("Escolha a conta que você gostaria de movimentar: ");
         System.out.println("1 - Conta Principal");
         System.out.println("2 - Conta Especial");
@@ -117,52 +114,38 @@ public class Usuario {
         Scanner scanner = new Scanner(System.in);
         int conta = scanner.nextInt();
 
+        switch (conta) {
+            case 1:
+                return contaPrincipal;
+            case 2:
+                return contaEspecial;
+            case 3:
+                return contaPoupanca;
+            default:
+                throw new OpcaoInvalidaException();
+        }
+    }
+
+    public int escolherOperacaoAFazer() {
+
         System.out.println("Escolha a operação que você gostaria de fazer: ");
         System.out.println("1 - Visualizar Saldo");
         System.out.println("2 - Realizar Saque");
         System.out.println("3 - Realizar Depósito");
 
+        Scanner scanner = new Scanner(System.in);
         int operacao = scanner.nextInt();
 
+        return operacao;
+    }
+
+    public void realizarOperacao(Conta conta, int operacao) throws SaldoInsuficienteException, SaldoELimiteInsuficientesException, OpcaoInvalidaException {
+
         switch (operacao) {
-            case 1:
-                switch (conta) {
-                    case 1:
-                        this.contaPrincipal.visualizarSaldo();
-                        break;
-                    case 2:
-                        this.contaEspecial.visualizarSaldo();
-                        break;
-                    case 3:
-                        this.contaPoupanca.visualizarSaldo();
-                        break;
-                }
-            case 2:
-                switch (conta) {
-                    case 1:
-                        this.contaPrincipal.realizarSaque();
-                        break;
-                    case 2:
-                        this.contaEspecial.realizarSaque();
-                        break;
-                    case 3:
-                        this.contaPoupanca.realizarSaque();
-                        break;
-                }
-            case 3:
-                switch (conta) {
-                    case 1:
-                        this.contaPrincipal.fazerDeposito();
-                        break;
-                    case 2:
-                        this.contaEspecial.fazerDeposito();
-                        break;
-                    case 3:
-                        this.contaPoupanca.fazerDeposito();
-                        break;
-                }
-
-
+            case 1: conta.visualizarSaldo();
+            case 2: conta.realizarSaque();
+            case 3: conta.fazerDeposito();
+            default: throw new OpcaoInvalidaException();
         }
     }
 }

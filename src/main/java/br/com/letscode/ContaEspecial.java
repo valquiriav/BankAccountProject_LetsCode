@@ -1,4 +1,6 @@
-package org.example;
+package br.com.letscode;
+
+import br.com.letscode.Exceptions.SaldoELimiteInsuficientesException;
 
 import java.util.Scanner;
 
@@ -9,7 +11,7 @@ public class ContaEspecial extends Conta{
         this.setLimite(200);
     }
 
-    public void realizarSaque() {
+    public void realizarSaque() throws SaldoELimiteInsuficientesException {
         System.out.println("Que valor você gostaria de sacar?");
         Scanner scanner = new Scanner(System.in);
         double saque = scanner.nextDouble();
@@ -25,9 +27,7 @@ public class ContaEspecial extends Conta{
             System.out.println("Saque realizado com sucesso. Saldo atual: " + this.getSaldo());
             System.out.println("Limite atual: " + this.getLimite());
         } else {
-            System.err.println("Saldo e/ou limite insuficientes.");
-            System.err.println("Saldo atual: " + this.getSaldo());
-            System.err.println("Limite atual: " + this.getLimite());
+            throw new SaldoELimiteInsuficientesException();
         }
     }
 

@@ -1,14 +1,19 @@
-package org.example;
+package br.com.letscode;
+import br.com.letscode.Exceptions.OpcaoInvalidaException;
+import br.com.letscode.Exceptions.PossuiContaException;
+import br.com.letscode.Exceptions.SaldoELimiteInsuficientesException;
+import br.com.letscode.Exceptions.SaldoInsuficienteException;
+
 import java.util.Random;
 import java.util.Scanner;
 
 public class App {
 
-    public static void main( String[] args ) {
+    public static void main( String[] args ) throws PossuiContaException, OpcaoInvalidaException, SaldoInsuficienteException, SaldoELimiteInsuficientesException {
         executar();
     }
 
-    public static void executar() {
+    public static void executar() throws PossuiContaException, OpcaoInvalidaException, SaldoInsuficienteException, SaldoELimiteInsuficientesException {
         System.out.println("Seja bem vindo! Escolha uma opção:");
         System.out.println("1 - Autenticar usuário");
         System.out.println("2 - Criar usuário");
@@ -29,7 +34,7 @@ public class App {
         executar();
     }
 
-    public static void autenticarUsuario(){
+    public static void autenticarUsuario() throws PossuiContaException, OpcaoInvalidaException, SaldoInsuficienteException, SaldoELimiteInsuficientesException {
         System.out.println("Digite seu código de autenticação:");
         Scanner scanner = new Scanner(System.in);
         int codigo = scanner.nextInt();
@@ -45,7 +50,7 @@ public class App {
     }
 
 
-    public static void criarUsuario(){
+    public static void criarUsuario() throws PossuiContaException, OpcaoInvalidaException, SaldoInsuficienteException, SaldoELimiteInsuficientesException {
 
         System.out.println("Digite o seu nome:");
         Scanner scanner = new Scanner(System.in);
